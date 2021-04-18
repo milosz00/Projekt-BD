@@ -1,29 +1,58 @@
-<h1 style="margin-top: 100px;text-align: center;">Welcome dr. John Kowalsky</h1>
+<ng-container *ngIf = "false; else patient">
+    <h1 style="margin-top: 100px;text-align: center;">Welcome dr. John Kowalsky</h1>
 
 
-<div class="flex-container container">
-    <div class="flex-box col-10 col-md-5">
-        <a class="nav-link" routerLink = "/visits">
-            <img src="assets/images/hours.jpg" class="img-fluid">
-            <div class="sign">Visits</div>
-        </a>
+    <div class="flex-container container">
+        <div class="flex-box col-10 col-md-5">
+            <a class="nav-link" routerLink = "/visits">
+                <img src="assets/images/hours.jpg" class="img-fluid">
+                <div class="sign">Visits</div>
+            </a>
+        </div>
+        <div class="flex-box col-10 col-md-5">
+            <a class = "nav-link" routerLink="/patients">
+                <img src="assets/images/visitors.jpg" class="img-fluid">
+                <div class="sign">Patients</div>
+            </a>
+        </div>
+        <div class="flex-box col-10 col-md-5">
+            <a class="nav-link" routerLink = "/workHours">
+                <img src="assets/images/doctor.jpg" class="img-fluid">
+                <div class="sign">Work Hours</div>
+            </a>
+        </div>
+        <!-- <div class="flex-box col-10 col-md-5">
+            <a class="nav-link" routerLink = "/home">
+                <img src="assets/images/settings.jpg" class="img-fluid">
+                <div class="sign">Settings</div>
+            </a>
+        </div> -->
     </div>
-    <div class="flex-box col-10 col-md-5">
-        <a class = "nav-link" routerLink="/patients">
-            <img src="assets/images/visitors.jpg" class="img-fluid">
-            <div class="sign">Patients</div>
-        </a>
+</ng-container>
+
+
+<ng-template #patient>
+    <h1 style="margin-top: 100px;text-align: center;">Welcome Anna Nowak</h1>
+
+
+    <div class="flex-container container">
+        <div class="flex-box col-10 col-md-5">
+            <a class="nav-link" routerLink = "/visits">
+                <img src="assets/images/hours.jpg" class="img-fluid">
+                <div class="sign">Your Visits</div>
+            </a>
+        </div>
+        <div class="flex-box col-10 col-md-5">
+            <a class = "nav-link" routerLink="/patients">
+                <img src="assets/images/book-visit.png" class="img-fluid">
+                <div class="sign">Book Visit</div>
+            </a>
+        </div>
+        <div class="flex-box col-10 col-md-5">
+            <a class = "nav-link" routerLink="/patients">
+                <img src="assets/images/prescription.jpg" class="img-fluid">
+                <div class="sign">Your Presciptions</div>
+            </a>
+        </div>
     </div>
-    <div class="flex-box col-10 col-md-5">
-        <a class="nav-link" routerLink = "/workHours">
-            <img src="assets/images/doctor.jpg" class="img-fluid">
-            <div class="sign">Work Hours</div>
-        </a>
-    </div>
-    <div class="flex-box col-10 col-md-5">
-        <a class="nav-link" routerLink = "/home">
-            <img src="assets/images/settings.jpg" class="img-fluid">
-            <div class="sign">Settings</div>
-        </a>
-    </div>
-</div>
+</ng-template>
