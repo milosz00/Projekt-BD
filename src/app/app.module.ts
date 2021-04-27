@@ -7,6 +7,12 @@ import { HomeComponent } from './components/home/home.component';
 import { VisitsComponent } from './components/visits/visits.component';
 import { PatientsComponent } from './components/patients/patients.component';
 import { WorkHoursComponent } from './components/work-hours/work-hours.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from 'src/environments/environment';
+import { AdminComponent } from './components/admin/admin.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,11 +20,17 @@ import { WorkHoursComponent } from './components/work-hours/work-hours.component
     HomeComponent,
     VisitsComponent,
     PatientsComponent,
-    WorkHoursComponent
+    WorkHoursComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    NgbModule,
+    FormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

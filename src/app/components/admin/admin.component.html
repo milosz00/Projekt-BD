@@ -1,0 +1,41 @@
+<div class="flex-container">
+    <button class="btn btn-primary" (click)="changeVisible(0)">Add Doctor</button>
+    <button class="btn btn-success" (click)="changeVisible(1)">Add Patient</button>
+</div>
+
+
+<div class="box d-flex flex-column justify-content-center" *ngIf="formAddDoctorVisible || formAddPatientVisible">
+  <h2>{{formTitle}}</h2>
+  <div class="form">
+    <div class="form-row justify-content-center">
+        
+      <div class="col-10">
+        <input placeholder="Firstname" class="form-control" [(ngModel)]="firstname">
+      </div>
+        
+      <div class="col-10">
+        <input placeholder="Lastname" class="form-control" [(ngModel)]="lastname">
+      </div>
+      
+      <div class="col-10">
+        <input placeholder="Telephone Number" type="tel" class="form-control" [(ngModel)]="telephone">
+      </div>
+      
+      <div class="col-10">
+        <input placeholder="Email" type="email" class="form-control" [(ngModel)]="email">
+      </div>
+      
+      <ng-container *ngIf="formAddDoctorVisible">
+        <div class="col-10">
+          <input placeholder = "Specialization" class="form-control" [(ngModel)]="specialization">
+        </div>
+        
+        <div class="col-10">
+          <input placeholder="Office Address" class="form-control" [(ngModel)]="address">
+        </div>
+      </ng-container>
+      
+    </div>
+    <button class="btn btn-primary btn-block" (click)="addPerson()">Submit</button>
+  </div>
+</div>
