@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewInit, Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Doctor } from 'src/app/models/doctor';
 import { Patient } from 'src/app/models/patient';
 import { DoctorsService } from 'src/app/services/doctors.service';
 import { PatientsService } from 'src/app/services/patients.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-admin',
@@ -14,11 +15,18 @@ export class AdminComponent implements OnInit {
 
   formAddDoctorVisible = false;
   formAddPatientVisible = false;
+  listDoctorsVisible = false;
+  listPatientsVisible = false;
   formTitle: string;
+
+  doctors: Doctor[] = [];
+  patients: Patient[] = [];
 
   constructor(private doctorService: DoctorsService, private patientService: PatientsService) { }
 
   ngOnInit(): void {
+    this.getDoctorsList();
+    this.getPatientsList();
   }
 
   // forms inputs
@@ -68,12 +76,64 @@ export class AdminComponent implements OnInit {
   changeVisible(formChosen): void {
     if(formChosen === 0) {
       this.formAddDoctorVisible = !this.formAddDoctorVisible;
-      this.formAddPatientVisible = false;
+      
+      this.changeVisibleOthersToFalse([this.listDoctorsVisible, this.listPatientsVisible, this.formAddPatientVisible]);
       this.formTitle = "Add Doctor";
-    } else {
+    } else if(formChosen === 1){
       this.formAddPatientVisible = !this.formAddPatientVisible;
-      this.formAddDoctorVisible = false;
+      
+      this.changeVisibleOthersToFalse([this.listDoctorsVisible, this.listPatientsVisible, this.formAddDoctorVisible]);
       this.formTitle = "Add Patient";
+    } else if(formChosen === 2) {
+      
     }
   }
+
+
+  changeVisibleOthersToFalse(others: boolean[]) {
+    for(var o of others) {
+      o = false;
+    }
+  }
+
+
+  deleteDoctor(key: string): void {
+    this.doctorService.deleteDoctor(key);
+  }
+
+  deletePatient(key: string): void {
+    this.patientService.deletePatient(key);
+  }
+
+  getDoctorsList(): void {
+    this.doctorService.getDoctors().pipe(
+
+      map(changes =>
+      
+        changes.map(c =>
+        
+        ({​​ key: c.payload.key, ...c.payload.val() }​​)
+        
+        ))
+      
+      ).subscribe(
+      
+      doctors => {​​this.doctors = doctors;console.log(this.doctors)}​​);
+  }
+
+  getPatientsList(): void {
+    this.patientService.getPatients().pipe(
+      map(changes =>
+      
+        changes.map(c =>
+        
+        ({​​ key: c.payload.key, ...c.payload.val() }​​)
+        
+        ))
+      
+      ).subscribe(
+      
+      patients => {​​this.patients = patients;console.log(this.patients)}​​);
+  }
+
 }
