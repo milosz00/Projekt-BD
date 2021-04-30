@@ -77,25 +77,23 @@ export class AdminComponent implements OnInit {
     if(formChosen === 0) {
       this.formAddDoctorVisible = !this.formAddDoctorVisible;
       
-      this.changeVisibleOthersToFalse([this.listDoctorsVisible, this.listPatientsVisible, this.formAddPatientVisible]);
+      this.listDoctorsVisible = false; this.listPatientsVisible = false; this.formAddPatientVisible = false;
       this.formTitle = "Add Doctor";
     } else if(formChosen === 1){
       this.formAddPatientVisible = !this.formAddPatientVisible;
       
-      this.changeVisibleOthersToFalse([this.listDoctorsVisible, this.listPatientsVisible, this.formAddDoctorVisible]);
+      this.listDoctorsVisible = false; this.listPatientsVisible = false; this.formAddDoctorVisible = false;
       this.formTitle = "Add Patient";
     } else if(formChosen === 2) {
-      
+      this.listDoctorsVisible = !this.listDoctorsVisible;
+
+      this.formAddPatientVisible = false; this.listPatientsVisible = false; this.formAddDoctorVisible = false;
+    } else {
+      this.listPatientsVisible = !this.listPatientsVisible;
+
+      this.formAddPatientVisible = false; this.listDoctorsVisible = false; this.formAddDoctorVisible = false;
     }
   }
-
-
-  changeVisibleOthersToFalse(others: boolean[]) {
-    for(var o of others) {
-      o = false;
-    }
-  }
-
 
   deleteDoctor(key: string): void {
     this.doctorService.deleteDoctor(key);

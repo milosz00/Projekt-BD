@@ -1,38 +1,42 @@
-<div class="flex-container">
+<div class="buttons col-11 col-md-6">
+  <h1>Admin Panel</h1>
+  <div class="buttons-item col-12">
     <button class="btn btn-primary" (click)="changeVisible(0)">Add Doctor</button>
     <button class="btn btn-danger" (click)="changeVisible(2)">Delete Doctor</button>
-    <button class="btn btn-primary" (click)="changeVisible(1)" style="margin-top: 50px;">Add Patient</button>
+  </div>
+  <div class="buttons-item col-12">
+    <button class="btn btn-primary" (click)="changeVisible(1)">Add Patient</button>
     <button class="btn btn-danger" (click)="changeVisible(3)">Delete Patient</button>
+  </div>
 </div>
 
-
-<div class="box d-flex flex-column justify-content-center" *ngIf="formAddDoctorVisible || formAddPatientVisible">
-  <h2>{{formTitle}}</h2>
+<div class="form-box d-flex flex-column col-11 col-md-4" *ngIf="formAddDoctorVisible || formAddPatientVisible">
+  <h1>{{formTitle}}</h1>
   <div class="form">
-    <div class="form-row justify-content-center">
+    <div class="form-row">
         
-      <div class="col-10">
+      <div class="col-10 input">
         <input placeholder="Firstname" class="form-control" [(ngModel)]="firstname">
       </div>
         
-      <div class="col-10">
+      <div class="col-10 input">
         <input placeholder="Lastname" class="form-control" [(ngModel)]="lastname">
       </div>
       
-      <div class="col-10">
+      <div class="col-10 input">
         <input placeholder="Telephone Number" type="tel" class="form-control" [(ngModel)]="telephone">
       </div>
       
-      <div class="col-10">
+      <div class="col-10 input">
         <input placeholder="Email" type="email" class="form-control" [(ngModel)]="email">
       </div>
       
       <ng-container *ngIf="formAddDoctorVisible">
-        <div class="col-10">
+        <div class="col-10 input">
           <input placeholder = "Specialization" class="form-control" [(ngModel)]="specialization">
         </div>
         
-        <div class="col-10">
+        <div class="col-10 input">
           <input placeholder="Office Address" class="form-control" [(ngModel)]="address">
         </div>
       </ng-container>
@@ -42,15 +46,28 @@
   </div>
 </div>
 
-<div class="d-flex flex-column justify-content-center doctors col-12 col-md-6">
-  <div *ngFor="let doctor of doctors" class="doctor">
-    <span class="name col-8">dr. {{doctor.firstname}} {{doctor.lastname}}</span> <button class="btn btn-danger col-3" (click)="deleteDoctor(doctor.key)">Delete</button>
+<ng-container *ngIf="listDoctorsVisible">
+  <div class="d-flex flex-column justify-content-center items col-11 col-md-4">
+    <div class="item" *ngFor="let doctor of doctors">
+      <div class="name col-8">
+        <span style="font-weight: bold;">dr. {{doctor.firstname}} {{doctor.lastname}}</span><br>
+        <span> {{doctor.email}}</span>
+      </div>
+      <button class="btn btn-danger col-3" (click)="deleteDoctor(doctor.key)">Delete</button>
+    </div>
   </div>
-</div>
+</ng-container>
 
 
-<div class="d-flex flex-column justify-content-center patients col-12 col-md-6">
-  <div *ngFor="let patient of patients" class="patient">
-    <span class="name col-8">{{patient.firstname}} {{patient.lastname}}</span> <button class="btn btn-danger col-3" (click)="deletePatient(patient.key)">Delete</button>
+
+<ng-container *ngIf="listPatientsVisible">
+  <div class="d-flex flex-column justify-content-center items col-11 col-md-4">
+    <div class="item" *ngFor="let patient of patients">
+      <div class="name col-8">
+        <span style="font-weight: bold;">dr. {{patient.firstname}} {{patient.lastname}}</span><br>
+        <span> {{patient.email}}</span>
+      </div>
+      <button class="btn btn-danger col-3" (click)="deletePatient(patient.key)">Delete</button>
+    </div>
   </div>
-</div>
+</ng-container>

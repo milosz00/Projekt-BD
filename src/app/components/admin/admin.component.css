@@ -1,27 +1,39 @@
-.flex-container {
+.buttons {
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
-    width: 70%;
+    flex-wrap: wrap;
     margin: 100px auto 0px auto;
+    text-align: center;
+    border-bottom: 2px solid #1c8c38;
+}
+.buttons h1 {
+    color: #1c8c38;
 }
 
-.btn {
-    width: 50%;
-    margin: 10px auto 10px auto;
+.buttons-item {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.buttons-item .btn {
+    width: 40%;
+    margin: 10px 10px 10px 0px;
 }
 
 
-.box{
-    width: 400px;
+.form-box{
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
     background-color: white;
-    height: 500px;
     box-shadow: 0px 0px 13px 2px rgba(143,126,143,1);
     border-radius: 5px;
-    padding: 10px;
+    padding: 30px;
+    text-align: center;
+}
+
+.form-box .input {
+    margin: 0 auto 10px auto;
 }
 
 .col-10{
@@ -40,36 +52,23 @@ h2{
 }
 
 
-.doctors {
+.items {
     margin: 50px auto 0 auto;
-    border: 1px solid black;
     padding: 10px;
+    box-shadow: 0px 0px 10px 0px #4A8753;
 }
 
-.doctor {
-    border: 1px solid black;
+
+.item {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-}
-
-.doctor .name {
-    display: block;
-}
-
-.patients {
-    margin: 50px auto 0 auto;
-    border: 1px solid black;
+    margin-top: 8px;
     padding: 10px;
+    border-bottom: 2px solid #6ce68b;
 }
 
-.patient {
-    border: 1px solid black;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+.item .name {
+    border-radius: 5px;
 }
 
-.patient .name {
-    display: block;
-}
