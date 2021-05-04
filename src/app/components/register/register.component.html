@@ -1,0 +1,20 @@
+<div id="formContent">
+    <!-- Login Form -->
+    <div>
+        <input type="email" id="email" class="fadeIn second" name="email" placeholder="email" [(ngModel)]="email">
+        <input type="password" class="password" class="fadeIn third" name="password" placeholder="password" [(ngModel)]="password">
+        <input type="password" class="password" class="fadeIn third" name="password" placeholder="re-enter password" [(ngModel)]="password_repeat"> <br>
+        <input type="radio" id="doctor" name="role" value="doctor" [(ngModel)] = "userRole"> <label for="doctor" style="margin-left: 3px;">Doctor</label>
+        <input type="radio" id="patient" name="role" value="patient" style="margin-left: 8px;" [(ngModel)] = "userRole"> <label for="patient" style="margin-left: 3px;">Patient</label>
+        <input type="submit" class="fadeIn fourth" style="display: block;margin-left: auto;margin-right: auto;margin-top: 30px;" value="Sign Up" (click)="onCreateUser()">
+        
+        <div *ngIf="alertVisible" class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{errorInfo}}
+            <button type="button" class="close" (click)="hideAlert()" aria-label="close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+    </div>
+</div>
+

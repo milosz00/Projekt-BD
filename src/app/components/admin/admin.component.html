@@ -64,7 +64,7 @@
   <div class="d-flex flex-column justify-content-center items col-11 col-md-4">
     <div class="item" *ngFor="let patient of patients">
       <div class="name col-8">
-        <span style="font-weight: bold;">dr. {{patient.firstname}} {{patient.lastname}}</span><br>
+        <span style="font-weight: bold;">{{patient.firstname}} {{patient.lastname}}</span><br>
         <span> {{patient.email}}</span>
       </div>
       <button class="btn btn-danger col-3" (click)="deletePatient(patient.key)">Delete</button>
