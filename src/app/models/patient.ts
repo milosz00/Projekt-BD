@@ -5,4 +5,6 @@ export interface Patient {
     pesel: string;
     telephoneNumber: string;
     email: string;
+    uid?: string;
+    active: boolean;
 }

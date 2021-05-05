@@ -9,4 +9,6 @@ export interface Doctor {
     specialization: string;
     officeAddress: string;
     workHours: WorkHours;
+    uid?: string;
+    active: boolean;
 }

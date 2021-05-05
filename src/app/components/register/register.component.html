@@ -1,20 +1,64 @@
-<div id="formContent">
-    <!-- Login Form -->
-    <div>
-        <input type="email" id="email" class="fadeIn second" name="email" placeholder="email" [(ngModel)]="email">
-        <input type="password" class="password" class="fadeIn third" name="password" placeholder="password" [(ngModel)]="password">
-        <input type="password" class="password" class="fadeIn third" name="password" placeholder="re-enter password" [(ngModel)]="password_repeat"> <br>
-        <input type="radio" id="doctor" name="role" value="doctor" [(ngModel)] = "userRole"> <label for="doctor" style="margin-left: 3px;">Doctor</label>
-        <input type="radio" id="patient" name="role" value="patient" style="margin-left: 8px;" [(ngModel)] = "userRole"> <label for="patient" style="margin-left: 3px;">Patient</label>
-        <input type="submit" class="fadeIn fourth" style="display: block;margin-left: auto;margin-right: auto;margin-top: 30px;" value="Sign Up" (click)="onCreateUser()">
+<div class="form-box d-flex flex-column col-11 col-md-4">
+    <h1>SIGN UP</h1>
+    <div class="form">
+      <div class="form-row">
         
-        <div *ngIf="alertVisible" class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{errorInfo}}
-            <button type="button" class="close" (click)="hideAlert()" aria-label="close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="col-10 input" style="margin-top: 20px;">
+            <input type="radio" id="doctor" name="role" value="doctor" [(ngModel)] = "userRole"> 
+            <label for="doctor" style="margin-left: 3px;">Doctor</label>
+            <input type="radio" id="patient" name="role" value="patient" style="margin-left: 8px;" [(ngModel)] = "userRole"> 
+            <label for="patient" style="margin-left: 3px;">Patient</label>
         </div>
 
+        <div class="col-10 input">
+          <input placeholder="Firstname" class="form-control" [(ngModel)]="firstname">
+        </div>
+          
+        <div class="col-10 input">
+          <input placeholder="Lastname" class="form-control" [(ngModel)]="lastname">
+        </div>
+        
+        <div class="col-10 input">
+          <input placeholder="Telephone Number" type="tel" class="form-control" [(ngModel)]="telephone">
+        </div>
+        
+        <ng-container *ngIf="userRole === 'patient'">
+            <div class="col-10 input">
+                <input placeholder="PESEL" class="form-control" [(ngModel)]="pesel">
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="userRole === 'doctor'">
+          <div class="col-10 input">
+            <input placeholder = "Specialization" class="form-control" [(ngModel)]="specialization">
+          </div>
+          
+          <div class="col-10 input">
+            <input placeholder="Office Address" class="form-control" [(ngModel)]="address">
+          </div>
+        </ng-container>
+
+        <div class="col-10 input" style="margin-top: 30px;">
+            <input placeholder="Email" type="email" class="form-control" [(ngModel)]="email">
+        </div>
+
+        <div class="col-10 input">
+            <input type="password" placeholder="Password" class="form-control" [(ngModel)]="password">
+        </div>
+
+        <div class="col-10 input">
+            <input type="password" placeholder="Re-enter password"  class="form-control" [(ngModel)]="password_repeat">
+        </div>
+
+      </div>
+
+        <input type="submit" class="btn btn-primary" style="display: block;margin-left: auto;margin-right: auto;margin-top: 30px;" value="Sign Up" (click)="onCreateUser()">
+        
+        <div *ngIf="alertVisible" class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+            {{errorInfo}}
+            <button type="button" class="close" (click)="hideAlert()" aria-label="close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
     </div>
 </div>
-

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // import { AuthService } from 'src/app/auth.service';
 import { Alert } from 'src/app/models/alert';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  // constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService) { }
 
   // ngOnInit(): void {
   //   if(localStorage.getItem('user') !== null)
@@ -30,16 +31,12 @@ export class LoginComponent implements OnInit {
   //   this.getPersistence();
   // }
 
-  // onLogIn(){
-  //   this.auth.logIn(this.email,this.password,this.persistence.value).catch(
-  //     err => {this.errorInfo = err.message; this.alertVisible = true;}
-  //   )
-  // }
-  // getPersistence(){
-  //   this.auth.getPersistence().subscribe(c => {this.persistence = c;});
-  // }
+  onLogIn(){
+    this.auth.logIn(this.email,this.password).catch(
+      err => {this.errorInfo = err.message; this.alertVisible = true;}
+    )
+  }
 
-  onLogIn() {}
 
   hideAlert(){
     this.alertVisible = false;

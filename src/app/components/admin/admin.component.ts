@@ -48,6 +48,7 @@ export class AdminComponent implements OnInit {
         specialization: this.specialization,
         officeAddress: this.address,
         workHours: null,
+        active: false,
       };
 
       this.doctorService.createDoctor(doctor);
@@ -59,6 +60,7 @@ export class AdminComponent implements OnInit {
         email: this.email,
         telephoneNumber: this.telephone,
         pesel: "",
+        active: false,
       }
 
       this.patientService.createPatient(patient);

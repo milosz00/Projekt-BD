@@ -11,17 +11,32 @@ export class AuthService {
 
   constructor(private auth: AngularFireAuth, private db: AngularFireDatabase, private router: Router) { }
 
-  createUser(email: string, password: string, role: string) {
+  createUser(email: string, password: string, role: string, newUser: any, active: boolean) {
     return this.auth.createUserWithEmailAndPassword(email, password).then(user => {
-      const newUser: User = {
-        uid: user.user.uid,
-        email: user.user.email,
-        role: role,
-        active: true,
-      }
+      newUser.uid = user.user.uid;
+      newUser.active = active;
 
-      this.db.list('users').push(newUser);
+      this.db.list(role).push(newUser);
+
+      if(active === true) 
+        this.router.navigate(['/home']);
+    
+    })
+  }
+
+  logIn(email: string, password: string) {
+    return this.auth.signInWithEmailAndPassword(email, password).then(()=>{
       this.router.navigate(['/home']);
     })
+  }
+
+  logOut(){
+    this.auth.signOut().then(() => {
+      this.router.navigate(['/sign-in']);
+    })
+  }
+
+  getState() {
+    return this.auth.authState;
   }
 }

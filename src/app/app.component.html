@@ -20,6 +20,7 @@
           <a class="nav-link" routerLink="workHours">Work Hours</a>
         </li>
       </ul>
+      <button class="btn btn-success" [ngClass] = "{'logout':collapsed}" (click)="logOut()" *ngIf = "loginState">Log Out</button>
     </div>
   </div>
 </nav>
