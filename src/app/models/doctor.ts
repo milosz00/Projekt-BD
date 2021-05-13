@@ -11,4 +11,5 @@ export interface Doctor {
     workHours: WorkHours;
     uid?: string;
     active: boolean;
+    role: string;
 }

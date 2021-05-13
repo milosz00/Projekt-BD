@@ -11,7 +11,7 @@ import { WorkHoursComponent } from "./components/work-hours/work-hours.component
 
 const routes: Routes = [
     {path: "home", component: HomeComponent },
-    {path: "", redirectTo: "/home", pathMatch: 'full'},
+    {path: "", redirectTo: "/sign-in", pathMatch: 'full'},
     {path: "visits", component: VisitsComponent},
     {path: "workHours", component: WorkHoursComponent},
     {path: "patients", component: PatientsComponent},

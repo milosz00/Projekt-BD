@@ -78,6 +78,7 @@ export class RegisterComponent implements OnInit {
         telephoneNumber: this.telephone,
         pesel: this.pesel,
         active: true,
+        role: "patient",
       }
       return patient;
 
@@ -91,6 +92,7 @@ export class RegisterComponent implements OnInit {
         officeAddress: this.address,
         workHours: null,
         active: true,
+        role: "doctor",
       };
       return doctor
     }

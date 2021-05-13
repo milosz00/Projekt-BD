@@ -9,6 +9,7 @@ import { AuthService } from './services/auth.service';
 export class AppComponent implements OnInit{
   collapsed = true;
   loginState = null;
+  isAdmin = false;
 
   constructor(private auth: AuthService) {
   }
@@ -20,6 +21,7 @@ export class AppComponent implements OnInit{
       else
         this.loginState = false;
     })
+    this.isAdmin = this.auth.isAdmin();
   }
 
   toggleCollapsed(): void {

@@ -7,4 +7,5 @@ export interface Patient {
     email: string;
     uid?: string;
     active: boolean;
+    role: string;
 }

@@ -2,12 +2,15 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Router } from '@angular/router';
-import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  currentEmail: string;
+  currentUserRole: string;
+  isAdminUser = false;
 
   constructor(private auth: AngularFireAuth, private db: AngularFireDatabase, private router: Router) { }
 
@@ -26,7 +29,14 @@ export class AuthService {
 
   logIn(email: string, password: string) {
     return this.auth.signInWithEmailAndPassword(email, password).then(()=>{
-      this.router.navigate(['/home']);
+      if(email === "admin@admin.com") {
+        this.currentEmail = email;
+        this.isAdminUser = true;
+        this.router.navigate(['/admin-panel']);
+      } else {
+        this.currentEmail = email;
+        this.router.navigate(['/home']);
+      }
     })
   }
 
@@ -38,5 +48,13 @@ export class AuthService {
 
   getState() {
     return this.auth.authState;
+  }
+
+  getCurrentUserEmail(): string {
+    return this.currentEmail;
+  }
+
+  isAdmin(): boolean {
+    return this.isAdminUser;
   }
 }
