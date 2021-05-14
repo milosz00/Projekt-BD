@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { filter, map } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
+import { DbQueryService } from 'src/app/services/db-query.service';
 import { DoctorsService } from 'src/app/services/doctors.service';
 import { PatientsService } from 'src/app/services/patients.service';
 
@@ -14,7 +15,7 @@ export class HomeComponent implements OnInit {
   userName: string;
   userEmail: string;
   user: any[];
-  constructor(private auth: AuthService, private doctorService: DoctorsService, private patientsService: PatientsService) { }
+  constructor(private auth: AuthService, private queryService: DbQueryService) { }
 
   ngOnInit(): void {
     console.log(this.auth.getCurrentUserEmail());
@@ -24,11 +25,11 @@ export class HomeComponent implements OnInit {
   }
 
   getDoctorWithEmail(email: string) {
-    this.doctorService.findDoctor(email).subscribe(x=>{this.user = x;console.log(x)});
+    this.queryService.findDoctorByEmail(email, "value").subscribe(x=>{this.user = x;console.log(x)});
   }
 
   getPatientWithEmail(email: string) {
-    this.patientsService.findPatient(email).subscribe(x=>{if(this.user.length === 0) this.user = x; console.log(this.user)});
+    this.queryService.findPatientByEmail(email, "value").subscribe(x=>{if(this.user.length === 0) this.user = x; console.log(this.user)});
   }
 
 }

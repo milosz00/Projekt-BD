@@ -26,7 +26,4 @@ export class DoctorsService {
     this.db.list('doctors').remove(key);
   }
 
-  findDoctor(email: string): Observable<any> {
-    return this.db.list('doctors', ref => ref.orderByChild("email").equalTo(email)).valueChanges();
-  }
 }

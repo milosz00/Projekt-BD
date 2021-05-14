@@ -1,0 +1,80 @@
+.buttons {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 100px auto 0px auto;
+  text-align: center;
+  border-bottom: 2px solid #1c8c38;
+}
+.buttons h1 {
+  color: #1c8c38;
+}
+
+.buttons-item {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.buttons-item .btn {
+  width: 40%;
+  margin: 10px 10px 10px 0px;
+}
+
+
+.form-box{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 150px;
+  background-color: white;
+  box-shadow: 0px 0px 13px 2px rgba(143,126,143,1);
+  border-radius: 5px;
+  padding: 30px;
+  text-align: center;
+}
+
+.form-box .input {
+  margin: 0 auto 10px auto;
+}
+
+.col-10{
+  margin-top: 8px;
+}
+
+.form .btn{
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+}
+
+h1{
+  border-bottom: 1px solid #4A8753;
+  font-size: 20px;
+  padding: 10px;
+}
+
+
+.items {
+  margin: 50px auto 0 auto;
+  padding: 10px;
+  box-shadow: 0px 0px 10px 0px #4A8753;
+}
+
+
+.item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  padding: 10px;
+  border-bottom: 2px solid #6ce68b;
+}
+
+.item .name {
+  border-radius: 5px;
+}
+
+
+
+
+

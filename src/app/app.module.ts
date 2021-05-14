@@ -15,6 +15,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { DoctorsService } from './services/doctors.service';
+import { PatientsService } from './services/patients.service';
+import { AccountActiveComponent } from './components/account-active/account-active.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,8 @@ import { RegisterComponent } from './components/register/register.component';
     WorkHoursComponent,
     AdminComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AccountActiveComponent
   ],
   imports: [
     BrowserModule,

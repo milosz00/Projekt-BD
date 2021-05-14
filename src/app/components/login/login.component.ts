@@ -23,14 +23,6 @@ export class LoginComponent implements OnInit {
 
   constructor(private auth: AuthService) { }
 
-  // ngOnInit(): void {
-  //   if(localStorage.getItem('user') !== null)
-  //     this.isLogged = true;
-  //   else
-  //     this.isLogged = false;
-  //   this.getPersistence();
-  // }
-
   onLogIn(){
     this.auth.logIn(this.email,this.password).catch(
       err => {this.errorInfo = err.message; this.alertVisible = true;}

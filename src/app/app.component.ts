@@ -16,12 +16,16 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     this.loginState = this.auth.getState().subscribe(user => {
-      if(user)
+      if(user){
         this.loginState = true;
-      else
+        if(user.email === 'admin@admin.com')
+          this.isAdmin = true;
+      }
+      else{
         this.loginState = false;
+        this.isAdmin = false;
+      }
     })
-    this.isAdmin = this.auth.isAdmin();
   }
 
   toggleCollapsed(): void {

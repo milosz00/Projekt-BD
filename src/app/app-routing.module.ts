@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { AccountActiveComponent } from "./components/account-active/account-active.component";
 import { AdminComponent } from "./components/admin/admin.component";
 import { HomeComponent } from "./components/home/home.component";
 import { LoginComponent } from "./components/login/login.component";
@@ -18,6 +19,7 @@ const routes: Routes = [
     {path: "admin-panel", component: AdminComponent},
     {path: "sign-in", component: LoginComponent},
     {path: "register", component: RegisterComponent},
+    {path: "active-account", component: AccountActiveComponent},
 ]
 
 @NgModule({

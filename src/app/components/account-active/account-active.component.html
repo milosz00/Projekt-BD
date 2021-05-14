@@ -1,0 +1,25 @@
+<div class="form-box d-flex flex-column col-11 col-md-4">
+    <h1>ACTIVE YOUR ACCOUNT</h1>
+    <div class="form">
+      <div class="form-row">
+
+        <div class="col-10 input">
+            <input type="password" placeholder="Password" class="form-control" [(ngModel)]="password">
+        </div>
+
+        <div class="col-10 input">
+            <input type="password" placeholder="Re-enter password"  class="form-control" [(ngModel)]="password_repeat">
+        </div>
+
+      </div>
+
+        <input type="submit" class="btn btn-primary" style="display: block;margin-left: auto;margin-right: auto;margin-top: 30px;" value="Change Password" (click)="onUpdatePassword()">
+        
+        <div *ngIf="alertVisible" class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+            {{errorInfo}}
+            <button type="button" class="close" (click)="hideAlert()" aria-label="close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+</div>

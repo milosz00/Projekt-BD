@@ -24,7 +24,4 @@ export class PatientsService {
     this.db.list('patients').remove(key);
   }
 
-  findPatient(email: string) {
-    return this.db.list('patients', ref => ref.orderByChild("email").equalTo(email)).valueChanges();
-  }
 }
