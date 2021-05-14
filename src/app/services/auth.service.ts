@@ -4,8 +4,6 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { DbQueryService } from './db-query.service';
-import { DoctorsService } from './doctors.service';
-import { PatientsService } from './patients.service';
 
 @Injectable({
   providedIn: 'root'

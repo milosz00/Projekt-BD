@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { filter, map } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
 import { DbQueryService } from 'src/app/services/db-query.service';
-import { DoctorsService } from 'src/app/services/doctors.service';
-import { PatientsService } from 'src/app/services/patients.service';
 
 @Component({
   selector: 'app-home',

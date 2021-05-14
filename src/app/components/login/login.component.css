@@ -111,3 +111,7 @@ html {
   input[type=password]:placeholder,input[type=email]:placeholder {
     color: #cccccc;
   }
+
+  .link:hover {
+    border-bottom: 1px solid green;
+  }
