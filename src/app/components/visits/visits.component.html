@@ -1,1 +1,14 @@
-<p style="margin-top: 52px;">visits works!</p>
+<p style="margin-top: 52px;"></p>
+
+<ng-container>
+    <div class="d-flex flex-column justify-content-center items border m-3 p-2">
+      <div class="item" *ngFor="let visit of visits">
+        <div class="name col-8">
+          <span style="font-weight: bold;">Data rozpoczęcie wizyty: {{visit.startDate | date: 'HH:mm dd/MM/yyyy'}}</span><br>
+          <span style="font-weight: bold;">Data zakończenia wizyty: {{visit.endDate | date: 'HH:mm dd/MM/yyyy'}}</span><br>
+          <span style="font-weight: bold;">Lekarz: dr. {{findDoctorName(visit.doctorKey)}} </span>
+        </div>
+        <button class="btn btn-danger col-3" (click)="deleteVisit(visit.key)">Delete</button>
+      </div>
+    </div>
+</ng-container>

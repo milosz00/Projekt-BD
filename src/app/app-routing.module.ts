@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AccountActiveComponent } from "./components/account-active/account-active.component";
 import { AdminComponent } from "./components/admin/admin.component";
+import { BookVisitComponent } from "./components/book-visit/book-visit.component";
 import { HomeComponent } from "./components/home/home.component";
 import { LoginComponent } from "./components/login/login.component";
 import { PatientsComponent } from "./components/patients/patients.component";
@@ -20,6 +21,7 @@ const routes: Routes = [
     {path: "sign-in", component: LoginComponent},
     {path: "register", component: RegisterComponent},
     {path: "active-account", component: AccountActiveComponent},
+    {path: "book-visit", component: BookVisitComponent},
 ]
 
 @NgModule({

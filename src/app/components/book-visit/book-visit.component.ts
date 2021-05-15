@@ -5,26 +5,30 @@ import { DoctorsService } from 'src/app/services/doctors.service';
 import { VisitsService } from 'src/app/services/visits.service';
 
 @Component({
-  selector: 'app-visits',
-  templateUrl: './visits.component.html',
-  styleUrls: ['./visits.component.css']
+  selector: 'app-book-visit',
+  templateUrl: './book-visit.component.html',
+  styleUrls: ['./book-visit.component.css']
 })
-
-export class VisitsComponent implements OnInit {
+export class BookVisitComponent implements OnInit {
 
   constructor(private visitService: VisitsService, private doctorService: DoctorsService) { }
+
+  visits: Visit[] = [];
+  doctors: Map<String, String> = new Map();
+  patientKey: string = "-MZKMRbirtB-S8UUiWZe"; // TODO: zmień klucz 
+
+  choosenDoctorsKeys: Array<String>;
+
+  startDate = String("1990-01-01");
+  endDate = String("2030-01-01");
 
   ngOnInit(): void {
     this.getVisits();
     this.getDoctors();
   }
 
-  visits: Visit[] = [];
-  doctors: Map<String, String> = new Map();
-  patientKey: string = "-MZKMRbirtB-S8UUiWZe";  // TODO: zmien aby pobierało poprawny key 
-
   getVisits(): void{
-    this.visitService.getPatientVisits(this.patientKey).pipe(
+    this.visitService.getFreeVisits().pipe(
       map(changes =>
       
         changes.map(c =>
@@ -53,11 +57,16 @@ export class VisitsComponent implements OnInit {
       values => {values.forEach(value => {this.doctors.set(value.key, value.firstname + " " + value.lastname)});console.log(this.doctors)}​​);
   }
 
-  findDoctorName(key: String){
+  findDoctorName(key: String): String{
     return this.doctors.get(key);
   }
 
-  deleteVisit(key: string){
-    this.visitService.deletePatientFromVisit(key);
+  addVisit(key: string): void{
+    this.visitService.addPatientToVisit(key, this.patientKey);
+  }
+
+  resetFilter(): void{
+    this.startDate = String("1990-01-01");
+    this.endDate = String("2030-01-01");
   }
 }

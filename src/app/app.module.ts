@@ -18,6 +18,10 @@ import { RegisterComponent } from './components/register/register.component';
 import { DoctorsService } from './services/doctors.service';
 import { PatientsService } from './services/patients.service';
 import { AccountActiveComponent } from './components/account-active/account-active.component';
+import { BookVisitComponent } from './components/book-visit/book-visit.component';
+import { GetDoctorsVisitPipe } from './pipes/get-doctors-visit.pipe';
+import { GetVisitByDatesPipe } from './pipes/get-visit-by-dates.pipe';
+import { CreatePrescriptionComponent } from './components/create-prescription/create-prescription.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,11 @@ import { AccountActiveComponent } from './components/account-active/account-acti
     AdminComponent,
     LoginComponent,
     RegisterComponent,
-    AccountActiveComponent
+    AccountActiveComponent,
+    BookVisitComponent,
+    GetDoctorsVisitPipe,
+    GetVisitByDatesPipe,
+    CreatePrescriptionComponent
   ],
   imports: [
     BrowserModule,

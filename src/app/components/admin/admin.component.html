@@ -8,6 +8,10 @@
     <button class="btn btn-primary" (click)="changeVisible(1)">Add Patient</button>
     <button class="btn btn-danger" (click)="changeVisible(3)">Delete Patient</button>
   </div>
+  <div class="buttons-item col-12">
+    <button class="btn btn-primary" (click)="changeVisible(6)">Add Visit</button>
+    <button class="btn btn-danger" (click)="changeVisible(7)">Delete Visit</button>
+  </div>
 </div>
 
 <div class="form-box d-flex flex-column col-11 col-md-4" *ngIf="formAddDoctorVisible || formAddPatientVisible">
@@ -46,6 +50,30 @@
   </div>
 </div>
 
+<div class="form-box d-flex flex-column col-11 col-md-4" *ngIf="formAddVisitVisible">
+  <h1>Add Visit</h1>
+  <div class="form">
+    <div class="form-row">
+
+      <div class="col-10 input">
+        <select class="form-select w-100" aria-label="Default select example" class="form-control" [(ngModel)]="doctorKey">
+            <option selected *ngFor = "let doctor of doctors" value="{{doctor.key}}">dr. {{doctor.firstname}} {{doctor.lastname}}</option>
+        </select>
+      </div>
+
+      <div class="col-10 input">
+        <input type="datetime-local" class="form-control" [(ngModel)]="startDate">
+      </div>
+
+      <div class="col-10 input">
+        <input type="datetime-local" class="form-control" [(ngModel)]="endDate">
+      </div>
+      
+    </div>
+    <button class="btn btn-primary btn-block" (click)="addVisit()">Submit</button>
+  </div>
+</div>
+
 <ng-container *ngIf="listDoctorsVisible">
   <div class="d-flex flex-column justify-content-center items col-11 col-md-4">
     <div class="item" *ngFor="let doctor of doctors">
@@ -68,6 +96,21 @@
         <span> {{patient.email}}</span>
       </div>
       <button class="btn btn-danger col-3" (click)="deletePatient(patient.key)">Delete</button>
+    </div>
+  </div>
+</ng-container>
+
+
+<ng-container *ngIf="listVisitsVisible">
+  <div class="d-flex flex-column justify-content-center items col-11 col-md-4">
+    <div class="item" *ngFor="let visit of visits">
+      <div class="name col-8">
+        <span style="font-weight: bold;">Data rozpoczęcie wizyty: {{visit.startDate}}</span><br>
+        <span style="font-weight: bold;">Data zakończenia wizyty: {{visit.endDate}}</span><br>
+        <span> Doctor: {{getDoctorName(visit.doctorKey)}}</span><br>
+        <span> Pacjent: {{getPacientName(visit.patientKey)}}</span>
+      </div>
+      <button class="btn btn-danger col-3" (click)="deleteVisit(visit.key)">Delete</button>
     </div>
   </div>
 </ng-container>
