@@ -1,1 +1,51 @@
-<p>create-prescription works!</p>
+<div style="margin-top: 52px; width:60%;margin-left:20%;">
+    <h1>Tworzenie nowej recepty</h1>
+    <form [(formGroup)]="prescriptionForm" (ngSubmit)="onSubmit()" class="form-group" style="margin-bottom:50px;">
+        <div class="content">
+        <button class="btn btn-success" type="submit">Wystaw receptę</button>
+        
+            <div>
+                <label for="pesel">
+                PESEL Pacjenta
+                </label>
+                <input id="pesel" type="text" formControlName="pesel" class="form-control">
+            </div>
+
+
+            <div>
+                <label for="validity">
+                Ważność recepty
+                </label>
+                <input id="validity" type="date" formControlName="validity" class="form-control">
+            </div>
+
+
+            <div>
+                <label for="doctor">
+                Lekarz wypisujący
+                </label>
+                <input id="doctor" type="text" formControlName="doctor" class="form-control">
+            </div>
+
+
+
+        </div>
+      </form>
+      <div>
+        <label for="medicine">
+        Lek
+        </label>
+        <input [(ngModel)]="medicine" id="medicine" type="text" [ngModelOptions]="{standalone: true}" class="form-control">
+    </div>
+    <div>
+        <label for="quantity">
+        Ilość
+        </label>
+        <input [(ngModel)]="quantity" id="quantity" type="text" [ngModelOptions]="{standalone: true}" class="form-control">
+    </div>
+    <button (click)="addMedicine()" class="btn btn-secondary">Dodaj lek</button>
+    <h3>Dodane leki na recepcie:</h3>
+    <ul>
+        <li *ngFor = "let medicine of medicines">Nazwa: {{medicine.medicine}}, ilość: {{medicine.quantity}}</li>
+    </ul>
+</div>

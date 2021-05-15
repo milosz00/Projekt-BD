@@ -1,0 +1,26 @@
+<div style="margin-top:52px;">
+    <h1 style="text-align: center;margin-top:70px; margin-bottom:30px;">Twoje recepty</h1>
+    <table class="table" style="width:100%;">
+        <tr  class="thead-dark">
+            <th>PESEL</th>
+            <th>Lekarz wystawiający</th>
+            <th>Data wystawienia</th>
+            <th>Data ważności</th>
+            <th>Leki</th>
+        </tr>
+        <tr *ngFor="let prescription of prescriptions">
+            <th>{{prescription.pesel}}</th>
+            <th>{{prescription.doctor}}</th>
+            <th>{{prescription.date | date: 'medium'}}</th>
+            <th>{{prescription.validity | date}}</th>
+            <th>
+                <ul>
+                    <li *ngFor="let medicine of prescription.medicines">
+                        nazwa: {{medicine.medicine}}, ilość: {{medicine.quantity}}
+                    </li>
+                </ul>
+            </th>
+
+        </tr>
+    </table>
+</div>

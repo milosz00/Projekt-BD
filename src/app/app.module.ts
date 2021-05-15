@@ -22,6 +22,8 @@ import { BookVisitComponent } from './components/book-visit/book-visit.component
 import { GetDoctorsVisitPipe } from './pipes/get-doctors-visit.pipe';
 import { GetVisitByDatesPipe } from './pipes/get-visit-by-dates.pipe';
 import { CreatePrescriptionComponent } from './components/create-prescription/create-prescription.component';
+import { PrescriptionListComponent } from './components/prescription-list/prescription-list.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { CreatePrescriptionComponent } from './components/create-prescription/cr
     BookVisitComponent,
     GetDoctorsVisitPipe,
     GetVisitByDatesPipe,
-    CreatePrescriptionComponent
+    CreatePrescriptionComponent,
+    PrescriptionListComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,7 @@ import { CreatePrescriptionComponent } from './components/create-prescription/cr
     AngularFireDatabaseModule,
     NgbModule,
     FormsModule,
-
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
