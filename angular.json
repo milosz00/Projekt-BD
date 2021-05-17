@@ -26,11 +26,11 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": ["node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"                          
-            ],            
-            "scripts": [
-            ]          
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css"
+            ],
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -120,6 +120,10 @@
               "devServerTarget": "Projekt-BD:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
     }

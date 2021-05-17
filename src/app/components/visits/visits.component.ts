@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Visit } from 'src/app/models/visit';
+import { AuthService } from 'src/app/services/auth.service';
+import { DbQueryService } from 'src/app/services/db-query.service';
 import { DoctorsService } from 'src/app/services/doctors.service';
 import { VisitsService } from 'src/app/services/visits.service';
 
@@ -12,18 +14,24 @@ import { VisitsService } from 'src/app/services/visits.service';
 
 export class VisitsComponent implements OnInit {
 
-  constructor(private visitService: VisitsService, private doctorService: DoctorsService) { }
+  constructor(private visitService: VisitsService, private doctorService: DoctorsService, private queryService: DbQueryService, private auth: AuthService) { }
+
+  email: string;
+  patientKey: string = "";  // TODO: zmien aby pobierało poprawny key 
 
   ngOnInit(): void {
-    this.getVisits();
     this.getDoctors();
+    this.email = this.auth.getCurrentUserEmail();
+    console.log(this.email);
+    this.getPatientKey();
+    // this.getVisits();
   }
 
   visits: Visit[] = [];
   doctors: Map<String, String> = new Map();
-  patientKey: string = "-MZKMRbirtB-S8UUiWZe";  // TODO: zmien aby pobierało poprawny key 
 
   getVisits(): void{
+    console.log(this.patientKey);
     this.visitService.getPatientVisits(this.patientKey).pipe(
       map(changes =>
       
@@ -59,5 +67,26 @@ export class VisitsComponent implements OnInit {
 
   deleteVisit(key: string){
     this.visitService.deletePatientFromVisit(key);
+  }
+
+  getPatientKey(): void {
+    this.queryService.findPatientByEmail(this.email, "snapshot").pipe(
+      map(changes =>
+      
+        changes.map(c =>
+        
+        ({​​ key: c.payload.key, ...c.payload.val() }​​)
+        
+        ))
+      
+      ).subscribe(
+      
+      patients => {
+        if(patients.length > 0) {
+        ​ ​ this.patientKey = patients[0].key;
+          console.log(this.patientKey);
+        }
+        this.getVisits();
+      }​​);
   }
 }

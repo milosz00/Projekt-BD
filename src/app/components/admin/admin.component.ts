@@ -159,7 +159,7 @@ export class AdminComponent implements OnInit {
       
       ).subscribe(
       
-      doctors => {​​this.doctors = doctors;console.log(this.doctors)}​​);
+      doctors => {​​this.doctors = doctors;}​​);
   }
 
   getPatientsList(): void {
@@ -174,7 +174,7 @@ export class AdminComponent implements OnInit {
       
       ).subscribe(
       
-      patients => {​​this.patients = patients;console.log(this.patients)}​​);
+      patients => {​​this.patients = patients;}​​);
   }
 
   getVisitsList(): void{

@@ -4,6 +4,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { DbQueryService } from './db-query.service';
+import { AdminCredentials } from 'src/app/models/credentials';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class AuthService {
   constructor(private auth: AngularFireAuth, private db: AngularFireDatabase, private router: Router, private queryService: DbQueryService) { }
 
   createUser(email: string, password: string, role: string, newUser: any, active: boolean) {
+    const admin = new AdminCredentials();
     return this.auth.createUserWithEmailAndPassword(email, password).then(user => {
       newUser.uid = user.user.uid;
       newUser.active = active;
@@ -26,7 +28,11 @@ export class AuthService {
       if(active === true) 
         this.router.navigate(['/home']);
     
-    })
+    }).then(()=>this.auth.signOut())
+      .then(()=>{
+        this.currentEmail = admin.getEmail(); 
+        this.auth.signInWithEmailAndPassword(admin.getEmail(), admin.getPassword())
+      })
   }
 
   logIn(email: string, password: string) {
@@ -75,13 +81,22 @@ export class AuthService {
 
   changePassword(email: string, password: string) {
     this.auth.signOut();
-    this.auth.signInWithEmailAndPassword(email, "default").then(()=>{
-      var user = this.auth.currentUser.then(x => {x.delete()});
-      this.auth.createUserWithEmailAndPassword(email, password).then(()=> {
-        this.modifyActiveDoctor(email);
-        this.modifyActivePatient(email);
-      })
-    })
+    this.auth.signInWithEmailAndPassword(email, "default").then(user => {
+      user.user.updatePassword(password);
+      this.modifyActiveDoctor(email);
+      this.modifyActivePatient(email); 
+      this.router.navigate(['/home']);
+    });
+    // this.auth.signInWithEmailAndPassword(email, "default").then(()=>{
+    //   var user = this.auth.currentUser.then(x => {
+    //     x.delete();
+    // }).then(()=>{
+    //     this.auth.createUserWithEmailAndPassword(email, password).then(()=> {
+    //       this.modifyActiveDoctor(email);
+    //       this.modifyActivePatient(email);
+    //     })
+    //   })
+    // })
   }
 
   private modifyActiveDoctor(email: string) {
